@@ -11,3 +11,5 @@ Created by COMP308_Section402_GROUP6
 
 
 
+####   "start":"nodemon --openssl-legacy-provider server",
+   #### "dev":"nodemon server"
