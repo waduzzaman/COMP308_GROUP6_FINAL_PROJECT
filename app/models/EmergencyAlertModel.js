@@ -1,11 +1,12 @@
-﻿const mongoose = require('mongoose');
+﻿// Energency Alert model
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
+// Create Energency Alert schema
 const EmergencyAlertSchema = new Schema({
   alertMessage: {
     type: String,
-    required: [true, "Please add bodyTemperature"],
+    required: [true, "Add body Temperature"],
   },
   patient:
   {
@@ -14,4 +15,6 @@ const EmergencyAlertSchema = new Schema({
   },
 });
 
+// Export module
 module.exports = mongoose.model('EmergencyAlert', EmergencyAlertSchema);
+

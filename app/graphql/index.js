@@ -1,3 +1,4 @@
+// load required dependency 
 var GraphQLSchema = require("graphql").GraphQLSchema;
 var GraphQLObjectType = require("graphql").GraphQLObjectType;
 
@@ -6,6 +7,7 @@ var { vitalSignQuery, vitalSignMutation } = require("./VitalSignSchemas");
 var { emergencyAlertQuery, emergencyAlertMutation } = require("./EmergencyAlertSchemas");
 var { motivationalTipQuery, motivationalTipMutation } = require("./MotivationalTipSchemas");
 
+// create instance
 const queryType = new GraphQLObjectType({
     name: "Query",
     fields: function () {
@@ -31,4 +33,5 @@ const mutation = new GraphQLObjectType({
     },
 });
 
+// Export Module
 module.exports = new GraphQLSchema({ query: queryType, mutation: mutation});

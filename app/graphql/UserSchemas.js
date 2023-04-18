@@ -1,16 +1,16 @@
+// load required dependency 
 var GraphQLObjectType = require("graphql").GraphQLObjectType;
 var GraphQLList = require("graphql").GraphQLList;
 var GraphQLNonNull = require("graphql").GraphQLNonNull;
 var GraphQLString = require("graphql").GraphQLString;
-var GraphQLInt = require("graphql").GraphQLInt;
 var UserModel = require("../models/UserModel");
 const config = require('../../config/config');
-const jwtExpirySeconds = 300;
-const jwtKey = config.secretKey;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
+const jwtExpirySeconds = 300;
+const jwtKey = config.secretKey;
 
-
+// create instance
 const userType = new GraphQLObjectType({
     name: 'user',
     fields: function() {
@@ -49,8 +49,9 @@ const queryType = {
         type: new GraphQLList(userType),
         resolve: function () {
             const users = UserModel.find().exec();
-            if(!users) {
-                throw new Error("users not found");
+            if(!users) 
+            {
+                throw new Error("User not found");
             }
             return users;
         },
@@ -127,17 +128,21 @@ const Mutation = {
             const user = await UserModel.findOne({
                 email: params.email
             }).exec();
-            if(!user){
-                throw new Error("Login failed!");
+            if(!user)
+            {
+                throw new Error("Login failed");
             }
 
             const valid = await bcrypt.compareSync(params.password, user.password);
 
             if(!valid) {
-                throw new Error("Password did not match!");
+                throw new Error("Password not match");
             }
-            return { token: jwt.sign({ _id: user._id, userCategory: user.userCategory, name: user.firstName }, jwtKey, 
-                {algorithm: 'HS256', expiresIn: jwtExpirySeconds }), _id: user.id};
+            return { 
+                        token: jwt.sign({ _id: user._id, userCategory: user.userCategory, name: user.firstName }, 
+                        jwtKey, {algorithm: 'HS256', expiresIn: jwtExpirySeconds }),
+                        _id: user.id
+                    };
         },
     },
 
@@ -187,17 +192,16 @@ const Mutation = {
         },
         resolve(root, params) {
             const deleteuser = UserModel.findByIdAndRemove(params.id).exec();
-            if(!deleteuser){
-                throw new Error("Could not delete the user!");
+            if(!deleteuser)
+            {
+                throw new Error("Cannot delete user!");
             }
             return deleteuser;
         },
     },
-
-
-
 };
 
+//export module
 module.exports = {
     userQuery: queryType,
     userMutation: Mutation,

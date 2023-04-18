@@ -1,12 +1,11 @@
+// load required dependency
 var GraphQLObjectType = require("graphql").GraphQLObjectType;
 var GraphQLList = require("graphql").GraphQLList;
 var GraphQLNonNull = require("graphql").GraphQLNonNull;
 var GraphQLString = require("graphql").GraphQLString;
-const mongoose = require("mongoose");
-
 var VitalSignModel = require("../models/VitalSignModel");
 
-
+// Create Instance
 const vitalSignType = new GraphQLObjectType({
     name: 'vitalSign',
     fields: function() {
@@ -41,8 +40,9 @@ const queryType = {
         type: new GraphQLList(vitalSignType),
         resolve: function () {
             const vitalSigns = VitalSignModel.find().exec();
-            if(!vitalSigns) {
-                throw new Error("vitalSigns not found");
+            if(!vitalSigns) 
+            {
+                throw new Error("There are no any Vital signs");
             }
             return vitalSigns;
         },
@@ -51,21 +51,22 @@ const queryType = {
     vitalSign: {
         type: new GraphQLList(vitalSignType),
         args: {
-            patient: {
+            patient: 
+            {
                 type: new GraphQLNonNull(GraphQLString),
             },
         },
         resolve: function (root, params) {
             const vitalSign = VitalSignModel.find({patient : params.patient}).exec();
             console.log(vitalSign)
-            if(!vitalSign) {
-                throw new Error("VitalSigns not found for this patient");
+            if(!vitalSign) 
+            {
+                throw new Error("Patient don't have Vital signs");
             }
             return vitalSign;
         },
     }
 };
-
 
 const Mutation = {
     createVitalSign: {
@@ -95,13 +96,13 @@ const Mutation = {
 
             const newVitalSign = vitalSignModel.save();
             if(!newVitalSign) {
-                throw new Error("Could not enter the VitalSign details!");
+                throw new Error("Can't access Vital Sign details!");
             }
             return newVitalSign;
         },
     }
 };
-
+// Export Module
 module.exports = {
     vitalSignQuery: queryType,
     vitalSignMutation: Mutation,

@@ -1,11 +1,12 @@
-﻿const mongoose = require('mongoose');
+﻿// Load required dependency
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
+// Create Vital sign schema
 const VitalSignSchema = new Schema({
   bodyTemperature: {
     type: String,
-    required: [true, "Please add bodyTemperature"],
+    required: [true, "Add body Temperature"],
   },
   heartRate: {
     type: String
@@ -30,4 +31,5 @@ const VitalSignSchema = new Schema({
   }
 );
 
+// Export module
 module.exports = mongoose.model('VitalSign', VitalSignSchema);

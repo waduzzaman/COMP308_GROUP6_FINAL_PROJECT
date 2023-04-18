@@ -1,30 +1,29 @@
-﻿// Load the module dependencies
+﻿// Load required dependency
 const mongoose = require('mongoose');
-//Define a schema
 const Schema = mongoose.Schema;
-//
-// Define a new 'UserSchema'
+
+// Create User schema
 var UserSchema = new Schema({
 	email: {
 		type: String,
-		required: [true, "Please add an email"],
-		unique: [true, "Email must be unique"],
+		required: [true, "Add email"],
+		unique: [true, "Email already taken"],
 	  },
 	  password: {
 		type: String,
-		required: [true, "Please add a password"],
+		required: [true, "Add password"],
 	  },
 	  firstName: {
 		type: String,
-		required: [true, "Please add a first name"],
+		required: [true, "Add first name"],
 	  },
 	  lastName: {
 		type: String,
-		required: [true, "Please add a last name"],
+		required: [true, "Add last name"],
 	  },
 	  phoneNumber: {
 		type: String,
-		required: [true, "Please add an phone number"],
+		required: [true, "Add phone number"],
 	  },
 	  userCategory: {
 		type: String,
@@ -32,22 +31,21 @@ var UserSchema = new Schema({
 	  }
 });
 
-// Set the 'fullname' virtual property
-UserSchema.virtual('fullName').get(function() {
-	return this.firstName + ' ' + this.lastName;
-}).set(function(fullName) {
-	const splitName = fullName.split(' ');
-	this.firstName = splitName[0] || '';
-	this.lastName = splitName[1] || '';
-});
-
-
-// Configure the 'UserSchema' to use getters and virtuals when transforming to JSON
+// Convert to json 
 UserSchema.set('toJSON', {
 	getters: true,
 	virtuals: true
 });
 
-// Create the 'User' model out of the 'UserSchema'
+UserSchema.virtual('fullName').get(function() {
+	return this.firstName + ' ' + this.lastName;
+})
+.set(function(fullName) {
+	const splitName = fullName.split(' ');
+	this.firstName = splitName[0] || '';
+	this.lastName = splitName[1] || '';
+});
+
+//Export module
 module.exports = mongoose.model('User', UserSchema);
 

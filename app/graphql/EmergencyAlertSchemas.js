@@ -1,13 +1,11 @@
+// load required dependency 
 var GraphQLObjectType = require("graphql").GraphQLObjectType;
 var GraphQLList = require("graphql").GraphQLList;
 var GraphQLNonNull = require("graphql").GraphQLNonNull;
 var GraphQLString = require("graphql").GraphQLString;
-const mongoose = require("mongoose");
-
-var UserModel = require("../models/UserModel");
 var EmergencyAlertModel = require("../models/EmergencyAlertModel");
 
-
+// create instance
 const emergencyAlertType = new GraphQLObjectType({
     name: 'emergencyAlert',
     fields: function () {
@@ -30,8 +28,9 @@ const queryType = {
         type: new GraphQLList(emergencyAlertType),
         resolve: function () {
             const emergencyAlerts = EmergencyAlertModel.find().sort({_id:-1}).limit(1).exec();
-            if (!emergencyAlerts) {
-                throw new Error("Emergency Alerts not found");
+            if (!emergencyAlerts) 
+            {
+                throw new Error("There are no any emergency alert!");
             }
             return emergencyAlerts;
         },
@@ -48,7 +47,7 @@ const queryType = {
         resolve: function (root, params) {
             const emergencyAlert = EmergencyAlertModel.find({ patient: params.patient }).exec();
             if (!emergencyAlert) {
-                throw new Error("Emergency Alerts not found for this patient");
+                throw new Error("There are no any emergency alert for patient!");
             }
             return emergencyAlert;
         },
@@ -72,13 +71,14 @@ const Mutation = {
 
             const newEmergencyAlert = emergencyAlertModel.save();
             if (!newEmergencyAlert) {
-                throw new Error("Could not enter the Emergency Alert details!");
+                throw new Error("Can't access emergency alert!");
             }
             return newEmergencyAlert;
         },
     }
 };
 
+// Export Module
 module.exports = {
     emergencyAlertQuery: queryType,
     emergencyAlertMutation: Mutation,
