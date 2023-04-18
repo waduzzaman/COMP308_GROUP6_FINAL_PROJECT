@@ -49,7 +49,7 @@ const Register = () => {
   return (
     <div>
 
-      <Jumbotron className='form'>
+      <div className='form'>
         <Form onSubmit={e => {
           signUp({
             variables: {
@@ -74,6 +74,7 @@ const Register = () => {
             history.push(`/nurse`);
           }
         }} >
+          <h1>Sign Up</h1>
           <Form.Group>
             <Form.Label> Email</Form.Label>
             <Form.Control type="text" name="email" id="email" placeholder="Enter email" ref={node => { email = node; }} />
@@ -112,7 +113,7 @@ const Register = () => {
             Save
           </Button>
         </Form>
-      </Jumbotron>
+      </div>
     </div>
   );
 }

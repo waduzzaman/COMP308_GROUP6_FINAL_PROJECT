@@ -36,7 +36,7 @@
     "nodemon": "^2.0.2"
   },
   "scripts": {
-    "start": "nodemon server",
+    "start": "nodemon --openssl-legacy-provider server",
     "dev": "nodemon server"
   }
 }

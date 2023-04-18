@@ -12,6 +12,13 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.navbar-custom {  
+  background-color: #FFE5CA;  
+} 
+
+.nav-link{
+  color: #F3DEBA;
+}
 
 .App-header {
   background-color: #282c34;
@@ -43,14 +50,16 @@
 h1,h2,h3
   {
     align-items: center;
-    color: #350ff2;
+    text-align:center;
+    color: #E74646;
     font-weight: 500;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-display: swap;
   }
   h4
   {
     align-items: center;
-    color: #350ff2;
+    color: #FFE5CA;
     font-weight: 500;
     font-display: swap;
   }
@@ -76,23 +85,37 @@ h1,h2,h3
 }
 
   body{
-    background-image: linear-gradient(to left, rgba(255,0,0,0), #bbe4f0);
+    background-image: linear-gradient(to left, #FA9884, #FA9884);
   }
   .form{
-    padding-left: 400px;
-    padding-right: 400px;
-  align-items: center;
-  font-weight: 500;
-  background-image: linear-gradient(to left, rgba(255,0,0,0), #bbe4f0);
-
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-top: 10px;
+  margin-left: 500px;
+  margin-right: 500px;
+  padding:30px;
+  background-color: #ffc9c9;
+  opacity: 0.8;
+  border-radius: 20px;
+  border-color: darkgrey;
+  border-style:double;
   font-size: large;
   }
 
   .login{
-    padding-top: 80px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: large;
-    padding-left: 400px;
+   display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-top: 50px;
+  margin-left: 500px;
+  margin-right: 500px;
+  padding:30px;
+  background-color: #ffc9c9;
+  opacity: 0.8;
+  border-radius: 20px;
+  border-color: darkgrey;
+  border-style:double;
   }
 
 .viewPage{

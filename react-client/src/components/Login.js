@@ -3,6 +3,8 @@ import { useMutation, gql } from '@apollo/client';
 import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import jwt from 'jwt-decode';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Form from 'react-bootstrap/Form';
 
 
 const LOGIN = gql`
@@ -40,6 +42,7 @@ const UserLogin = () => {
   }
   return (
     <div className="login">
+      <h1>Login</h1>
       {/* Input box to input email */}
       Email Id : &nbsp;&nbsp;&nbsp;
       <input
@@ -47,14 +50,14 @@ const UserLogin = () => {
         onChange={(event) => setEmail(event.target.value)}
       />
       {/* Input box to input password */}
-      <br /><br />
+      <br /><br /><br />
       Password :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <input
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
       {/* Button to log in */}
-      <br />
+      <br /><br />
       <Button variant='primary' type='submit'
         onClick={
           () => login({ variables: { email, password } })

@@ -33,16 +33,14 @@ function App() {
   const userCategory = localStorage.getItem('userCategory');
   return (
     <Router>
-      <Navbar className='navbar navbar-dark bg-dark' >
+      <Navbar className='navbar-custom' >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="mr-auto ">
             <Nav.Link href="/home" >Home</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/signUp">Sign Up</Nav.Link>
             <Nav.Link href="/logout">Logout</Nav.Link>
-
-
           </Nav>
         </Navbar.Collapse>
       </Navbar>
