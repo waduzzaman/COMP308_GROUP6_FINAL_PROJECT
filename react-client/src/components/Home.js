@@ -8,9 +8,8 @@ function Home(props) {
 
     return (
         <div>
-            <h2>Express - React with CRUD Operations</h2>
-            <p>React front-end calls Express REST API to add,
-                list, update, or delete a user, create an article, etc.</p>
+            <h1>Patients Monitoring Application </h1>
+            <p>Login/Signup to check patients info</p>
         </div>
     );
 
